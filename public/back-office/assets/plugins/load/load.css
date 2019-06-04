@@ -1,0 +1,161 @@
+.spinner {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% { -webkit-transform: perspective(120px) }
+    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    } 50% {
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+          -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+      } 100% {
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        }
+}
+.loading{
+    position: fixed;
+    /*background: rgba(0,0,0,0.75);*/
+    /*background: rgba(41, 128, 185, 1 );*/
+    background: #dd4b39;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.load-box {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.pulsate {
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 1;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/*
+.cssload-loader {
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    margin: 3em;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.cssload-loader,
+.cssload-loader:before,
+.cssload-loader:after {
+    animation: 0.7s infinite ease-in-out;
+    -o-animation: 0.7s infinite ease-in-out;
+    -ms-animation: 0.7s infinite ease-in-out;
+    -webkit-animation: 0.7s infinite ease-in-out;
+    -moz-animation: 0.7s infinite ease-in-out;
+}
+.cssload-loader:before,
+.cssload-loader:after {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+    content: "";
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+    content: "";
+    background-color: rgb(97,97,255);
+    transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    animation: cssload-animation 1.045s infinite ease-in-out;
+    -o-animation: cssload-animation 1.045s infinite ease-in-out;
+    -ms-animation: cssload-animation 1.045s infinite ease-in-out;
+    -webkit-animation: cssload-animation 1.045s infinite ease-in-out;
+    -moz-animation: cssload-animation 1.045s infinite ease-in-out;
+}
+.cssload-loader:after { animation-delay: 0.5275s;
+    -o-animation-delay: 0.5275s;
+    -ms-animation-delay: 0.5275s;
+    -webkit-animation-delay: 0.5275s;
+    -moz-animation-delay: 0.5275s; }
+
+
+
+@keyframes cssload-animation {
+    0%	 { transform: translateX(-100%) scale(0); }
+    50%	{ transform: translateX(0%)		scale(1); }
+    100% { transform: translateX(100%)	scale(0); }
+}
+
+@-o-keyframes cssload-animation {
+    0%	 { -o-transform: translateX(-100%) scale(0); }
+    50%	{ -o-transform: translateX(0%)		scale(1); }
+    100% { -o-transform: translateX(100%)	scale(0); }
+}
+
+@-ms-keyframes cssload-animation {
+    0%	 { -ms-transform: translateX(-100%) scale(0); }
+    50%	{ -ms-transform: translateX(0%)		scale(1); }
+    100% { -ms-transform: translateX(100%)	scale(0); }
+}
+
+@-webkit-keyframes cssload-animation {
+    0%	 { -webkit-transform: translateX(-100%) scale(0); }
+    50%	{ -webkit-transform: translateX(0%)		scale(1); }
+    100% { -webkit-transform: translateX(100%)	scale(0); }
+}
+
+@-moz-keyframes cssload-animation {
+    0%	 { -moz-transform: translateX(-100%) scale(0); }
+    50%	{ -moz-transform: translateX(0%)		scale(1); }
+    100% { -moz-transform: translateX(100%)	scale(0); }
+}
+*/
