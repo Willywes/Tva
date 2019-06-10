@@ -651,11 +651,11 @@ html, body {
     color: #fff;
 }
 .main-color {
-    color: #bb2f26;
+    color: #1F7400;
 }
 
 .main-bg {
-    background-color: #bb2f26;
+    background-color: #1f7400;
 }
 
 .main-bg:hover,
@@ -664,7 +664,7 @@ html, body {
 }
 
 .text-button {
-    /*background-color: #bb2f26;*/
+    /*background-color: #1F7400;*/
     /*padding: 5px 15px;*/
 }
 
@@ -912,7 +912,7 @@ html, body {
 }
 
 .btn-collapse-cat {
-    color: #bb2f26;
+    color: #1F7400;
     padding: 0 5px 0 0;
     line-height: 10px;
 }
@@ -953,7 +953,7 @@ html, body {
 }
 
 .cart-badge {
-    border: 2px solid #bc2d27;
+    border: 2px solid #1F7400;
     border-radius: 50%;
     background: white;
     position: relative;
@@ -1003,8 +1003,8 @@ html, body {
 
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
-    border-color: #bb2f26;
-    background-color: #bb2f26;
+    border-color: #1F7400;
+    background-color: #1F7400;
 }
 
 .custom-control-label::before {
@@ -1017,7 +1017,7 @@ html, body {
     pointer-events: none;
     content: "";
     background-color: #fff;
-    border: #bb2f26 solid 1px;
+    border: #1F7400 solid 1px;
     cursor: pointer;
 }
 
@@ -1046,7 +1046,7 @@ input[type=number]::-webkit-outer-spin-button {
 .number-input {
     /* border: 2px solid #ddd; */
     display: inline-flex;
-    background: #bb2f26;;
+    background: #1F7400;;
     border-radius: 3px;
 }
 
@@ -1069,7 +1069,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
     border-radius: 50%;
     font-weight: 900;
-    color: #bb2f26;;
+    color: #1F7400;;
     font-size: 16px;
     padding: 0;
     line-height: 16px;
@@ -1094,7 +1094,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: sans-serif;
     max-width: 32px;
     padding: .3rem;
-    border: 0 solid #bb2f26;;
+    border: 0 solid #1F7400;;
     font-size: 1rem;
     height: 2rem;
     font-weight: lighter;
@@ -1102,13 +1102,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .md-show.md-effect-12 ~ .md-overlay {
-    background: #bb2f26 !important;
+    background: #1F7400 !important;
 }
 
 .btn-modal {
     width: 100%;
     max-width: 260px;
-    color: #bb2f26;
+    color: #1F7400;
     background: white;
 }
 
@@ -1147,7 +1147,7 @@ Full screen Modal
 */
 .as-modal {
     z-index: 1200;
-    background-color: #bb2f26;
+    background-color: #1F7400;
     display: none;
     height: 100vh;
     position: fixed;
@@ -1269,7 +1269,7 @@ Full screen Modal
 }
 
 .link-finish{
-    color: #bb2f26 !important;
+    color: #1F7400 !important;
     text-decoration: none;
     background-color: transparent;
 }
@@ -1282,6 +1282,6 @@ Full screen Modal
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
-    border-color: #bb2f26;
+    border-color: #1F7400;
     background-color: white;
 }

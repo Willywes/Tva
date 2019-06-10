@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-logo mx-auto">
                 <li class="nav-item">
                     <a class="nav-link p-0" href="/" style="margin-right: -22px;"><img
-                                src="/hsushi/images/logo-negro.svg" alt="Hollywood Sushi"
+                                src="https://www.odepa.gob.cl/wp-content/uploads/2015/02/logo-300x75.png" alt="Odepa TVA"
                                 width="" height="50"></a>
                 </li>
             </ul>

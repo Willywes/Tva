@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-6 col-md-3">
                 <div>
-                    <img src="/hsushi/images/logo-negro.svg" width="90%">
+                    <img src="https://www.odepa.gob.cl/wp-content/uploads/2015/02/logo-300x75.png" width="90%">
                 </div>
 
 

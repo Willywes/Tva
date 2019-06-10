@@ -1,7 +1,7 @@
 @if($destacados)
 
     <section>
-        <div class="container" id="destacados">
+        <div class="container  mb-5" id="destacados">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
