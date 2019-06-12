@@ -19,8 +19,8 @@
                                     <span class="bold main-color">Lunes cerrado</span>
                                 </p>
                                 <p>
-                                    <button style="width: 300px" class="btn btn-lg main-bg p-0 text-white" data-toggle="modal" data-target="#modal-check-address">
-                                        <div class="left text-left text-button px-3 py-1" >
+                                    <button style="min-width: 232px; width: 100%; max-width: 320px;" class="btn btn-lg main-bg p-0 text-white" data-toggle="modal" data-target="#modal-check-address">
+                                        <div class="btn-ubica left text-left text-button px-3 py-1" >
                                             Revisa si estás en el <br>
                                             <span class="semibold">área de reparto AQUÍ</span>
                                         </div>
@@ -30,8 +30,8 @@
                                     </button>
                                 </p>
                                 <p>
-                                    <button type="button" onclick="goGoogleMaps();" style="width: 300px" class="btn btn-lg main-bg p-0 text-white">
-                                        <div class="left text-left text-button px-3 py-1">
+                                    <button type="button" onclick="goGoogleMaps();" style="min-width: 232px; width: 100%; max-width: 320px;" class="btn btn-lg main-bg p-0 text-white">
+                                        <div class="btn-ubica left text-left text-button px-3 py-1">
                                             Retiro en Tienda <br>
                                             <span class="semibold">¿Como Llegar?</span>
                                         </div>

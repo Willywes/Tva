@@ -12,7 +12,6 @@
 
     @include('frontend.carta._full')
 
-
 @endsection
 
 @section('styles')

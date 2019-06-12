@@ -15,13 +15,13 @@ class Product extends Model
         'sku',
         'price',
         'offer_price',
-        'weight',
-        'length',
-        'height',
-        'width',
+//        'weight',
+//        'length',
+//        'height',
+//        'width',
         'product_category_id',
         'position',
-        'outstanding',
+        'offer',
         'active',
         'editable',
         'removable',
@@ -34,7 +34,7 @@ class Product extends Model
     ];
 
     protected $appends = [
-        'attributes'
+        'category_attributes'
     ];
 
     public function scopeAvailable()
@@ -52,7 +52,7 @@ class Product extends Model
         return $this->belongsToMany(Attribute::class, 'product_attributes', 'product_id', 'attribute_id');
     }
 
-    function getAttributesAttribute()
+    function getCategoryAttributesAttribute()
     {
         $cat = AttributeCategory::select('id')->whereHas('attributes', function ($attribute) {
             $attribute->whereHas('products', function ($p) {
@@ -65,8 +65,8 @@ class Product extends Model
             ->with(['attributes' => function ($attribute) {
                 $attribute->whereHas('products', function ($p) {
                     $p->where('product_id', $this->id);
-                });
-            }])->find($cat);
+                })->orderBy('id');
+            },'attributes.product_attribute'])->find($cat);
     }
 
 }

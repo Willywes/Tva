@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Customer;
 use App\Models\OpenHour;
 use App\Models\Order;
 use App\Models\Timetable;
@@ -87,25 +88,48 @@ class HelperFront
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+
+    }
+
+    public static function sendMailRecoveryCustomer($customer_id, $pass)
+    {
+
+        try {
+
+            $customer =  Customer::find($customer_id);
+
+            $to_name = $customer->fullname;
+            $to_email = $customer->email;
+
+            $data = ['customer' => $customer, 'pass' => $pass];
+
+            Mail::send(['html' => 'emails.recovery'], $data, function ($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject('Nueva Contraseña');
+                $message->from('pedidohsushi@gmail.com', 'Hollywood Sushi');
+            });
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
     }
 
     public static function validateHorary()
     {
 
-        $date   = new DateTime();
+        $date = new DateTime();
         $key_date = $date->format('w');
-        $current =  '2019-05-31 17:01:00';//$date->format('Y-m-d H:i:s');
+        $current = '2019-05-31 17:01:00';//$date->format('Y-m-d H:i:s');
         $day = $date->format('Y-m-d');
 
-        $timetable =  Timetable::with('open_hours')->find($key_date);
+        $timetable = Timetable::with('open_hours')->find($key_date);
 
         $open_hours = OpenHour::where('timetable_id', $timetable->id)->get();
 
-        foreach ($open_hours as $o){
-            $start = $day .  ' ' . $o->start ;
-            $end = $day .  ' ' . $o->end ;
+        foreach ($open_hours as $o) {
+            $start = $day . ' ' . $o->start;
+            $end = $day . ' ' . $o->end;
 
-            if($current >= $start and $current <= $end){
+            if ($current >= $start and $current <= $end) {
                 return $o;
             }
         }

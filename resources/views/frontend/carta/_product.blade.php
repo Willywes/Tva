@@ -25,11 +25,26 @@
 
             </div>
             <div class="col-4">
-                <div onclick="addToCart('{{ $product->id }}')" class="add-pedido"></div>
+                {{--@if(count($product->category_attributes))--}}
+                {{--@foreach($product->category_attributes as $category)--}}
+                {{--<select name="attribute_id" id="">--}}
+                {{--@foreach($category->attributes as $attr)--}}
+                {{--<option value="{{ $attr->id }}">{{ $attr->name }}</option>--}}
+                {{--@endforeach--}}
+                {{--</select>--}}
+                {{--@endforeach--}}
+
+                {{--@endif--}}
+
+                @if(count($product->category_attributes))
+                    <div onclick="showProductCarta('{{ $product->id }}')" class="add-pedido"></div>
+                @else
+                    <div onclick="addToCart('{{ $product->id }}')" class="add-pedido"></div>
+                @endif
                 {{--@if($product->has('attributes'))--}}
-                    {{--<div onclick="showProductCarta('{{ $product->id }}')" class="add-pedido"></div>--}}
+                {{--<div onclick="showProductCarta('{{ $product->id }}')" class="add-pedido"></div>--}}
                 {{--@else--}}
-                    {{--<div onclick="addToCart('{{ $product->id }}')" class="add-pedido"></div>--}}
+                {{--<div onclick="addToCart('{{ $product->id }}')" class="add-pedido"></div>--}}
                 {{--@endif--}}
 
                 {{--<a href="" class="right">--}}

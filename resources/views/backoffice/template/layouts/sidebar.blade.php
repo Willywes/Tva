@@ -18,7 +18,7 @@
             <li {{ (Request::is('backoffice/pedidos') ? 'class=active' : '') }} >
                 <a href="{{ route('backoffice.pedidos.index') }}">
                     <i class="fa fa-file-text-o"></i>
-                    Pedidos
+                    <span>Pedidos</span>
                 </a>
             </li>
 

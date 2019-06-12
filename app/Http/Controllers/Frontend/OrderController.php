@@ -13,7 +13,7 @@ class OrderController extends Controller
 
     public function store($id)
     {
-        $cart = Cart::with(['items.product'])
+        return $cart = Cart::with(['items.product'])
             ->withCount('items')
             ->where('customer_id', auth()->guard('customer')->user()->id)
             ->latest()->first();
@@ -39,20 +39,30 @@ class OrderController extends Controller
 
         foreach ($cart->items as $item) {
 
+            dd($item);
+
             $price = $item->product->offer_price ? $item->product->offer_price : $item->product->price;
-            $sub_total = $item->quantity * $price;
-            $total += $sub_total;
 
             $ot = new OrderItem();
             $ot->order_id = $order->id;
             $ot->product_id = $item->product_id;
             $ot->quantity = $item->quantity;
             $ot->price = $price;
-            $ot->subtotal = $sub_total;
+            $ot->extra_price = $item->extra_price;
+            $ot->subtotal = $item->total;
+
+
+            if(count($item->product_attributes)){
+                foreach ($item->product_attributes as $product_attribute){
+                    $ot->extra_description .= '<div class="font-12 italic"><strong>' . $product_attribute->attribute->attribute_category->name. '</strong> : <span>'. $product_attribute->attribute->name  . '</span><div>';
+                }
+            }
+
             $ot->save();
         }
 
-        $order->subtotal = $total;
+        $order->subtotal = $cart->total;
+
         if($order->order_type_id == 2000){
             $order->dispatch_amount = 1500;
             $order->total = $total + 1500;

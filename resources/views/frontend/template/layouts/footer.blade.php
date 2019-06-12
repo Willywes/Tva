@@ -1,14 +1,13 @@
 <section id="footer" style="background-color: #bfbfbf">
-    <div class="container p-5">
+    <div class="container p-5 text-center text-md-left">
         <div class="row">
-            <div class="col-6 col-md-3">
+            <div class="col-12 col-md-3 mb-4">
                 <div>
                     <img src="/hsushi/images/logo-negro.svg" width="90%">
                 </div>
 
-
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-12 col-md-3 mb-4">
                 <div class="mb-3">
                     <div>Teléfono Pedidos</div>
                     <div><i class="fa fa-phone"></i> <span class="semibold"><a target="_blank" href="tel:+56222163171">2 2216 3171</a></span></div>
@@ -25,7 +24,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-12 col-md-3 mb-4">
                 <div>
                     <div>
                         <i class="fas fa-map-marker-alt"></i>
@@ -38,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-12 col-md-3 mb-4">
                 <div>
                     <div>Siguenos</div>
                     <div>

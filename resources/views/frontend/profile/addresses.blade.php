@@ -9,10 +9,14 @@
                         <div class="card-body p-3 py-md-4 px-md-4">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="card-title left ml-2">Mis Direcciones</h3>
-                                    <button type="button" onclick="window.location='{{ route('init') }}'" class="btn  text-red m-0 mt-0 right">
+
+                                    <button type="button" onclick="window.location='{{ route('init') }}'"
+                                            class="btn  text-red m-0 mt-0 right">
                                         <i class="fas fa-times"></i> Salir
                                     </button>
+
+                                    <h3 class="card-title text-center ml-2">Mis direcciones</h3>
+
                                 </div>
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-dark main-bg m-2"

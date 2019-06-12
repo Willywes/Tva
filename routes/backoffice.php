@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function (){
-    return view('backoffice.template.base');
-})->name('backoffice');
+Route::get('/', 'DashboardController@index')->name('backoffice');
 
 Route::group(['middleware' => 'web'], function () {
     Route::resourceVerbs([

@@ -42,7 +42,7 @@
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini fixed">
+<body class="sidebar-mini skin-red sidebar-collapse" >
 <div class="loading" id="loading">
     <div class="load-box">
         <div class="spinner"></div>

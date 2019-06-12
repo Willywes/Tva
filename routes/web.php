@@ -23,9 +23,22 @@ Route::get('carrito', 'Frontend\CartController@index')->name('cart');
 
 Route::group(['prefix' => 'perfil'], function () {
     Route::get('pedidos', 'Frontend\CustomerController@orders')->name('profile.orders');
+
     Route::get('direcciones', 'Frontend\CustomerController@addresses')->name('profile.addresses');
     Route::get('get-addresses', 'Frontend\CustomerController@getAddresses')->name('profile.get_addresses');
     Route::post('add-address', 'Frontend\CustomerController@addAddress')->name('profile.add_address');
+
+    Route::get('mi-perfil', 'Frontend\CustomerController@myProfile')->name('profile.my-profile');
+    Route::post('guardar-perfil', 'Frontend\CustomerController@storeProfile')->name('profile.store-profile');
+
+    Route::get('cambiar-contrasena', 'Frontend\CustomerController@changePassword')->name('profile.change-password');
+    Route::post('guardar-contrasena', 'Frontend\CustomerController@storePassword')->name('profile.store-password');
+
+    Route::get('recuperar-contrasena', 'Frontend\CustomerController@recoveryPassword')->name('profile.recovery-password');
+    Route::post('enviar-contrasena', 'Frontend\CustomerController@sendPassword')->name('profile.send-password');
+
+    Route::get('crear-nueva-cuenta', 'Frontend\CustomerController@createAccount')->name('profile.create-account');
+    Route::post('registrar-cuenta', 'Frontend\CustomerController@registerAccount')->name('profile.register-account');
 });
 
 Route::group(['prefix' => 'pedido'], function () {
@@ -70,7 +83,8 @@ Route::group(['prefix' => 'cart'], function () {
 
 Route::get('email', function (){
 
-    return \App\Http\Controllers\Frontend\HelperFront::validateHorary();
+//    return \App\Http\Controllers\Frontend\HelperFront::sendMailRecoveryCustomer(auth()->guard('customer')->user()->id, '1243');
+//    return \App\Http\Controllers\Frontend\HelperFront::validateHorary();
 //    $order = App\Models\Order::latest()->first();
 //    \App\Http\Controllers\Frontend\HelperFront::sendMailCustomer($order->id);
 //    return view('emails.mail', compact('order'));

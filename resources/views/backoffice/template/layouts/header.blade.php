@@ -1,7 +1,7 @@
 <header class="main-header" >
 
     <!-- Logo -->
-    <a href="i/" class="logo">
+    <a href="{{ route('backoffice') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>H</b>S</span>
         <!-- logo for regular state and mobile devices -->

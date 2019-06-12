@@ -11,11 +11,11 @@
         </div>
     </button>
 
-    <div class="dropdown-menu dropdown-menu-right" style="width: 320px;" id="cartDrowpdownContent"
+    <div class="dropdown-menu dropdown-menu-right" id="cartDrowpdownContent"
          aria-labelledby="cartDrowpdown">
         @if(auth()->guard('customer')->user())
             <form id="form-mini-cart" action="">
-                <div class="row" id="mini-cart-list" style="padding : 0 5px; max-height: 320px; overflow-y: auto;"></div>
+                <div class="row" id="mini-cart-list"></div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <div class="custom-control custom-checkbox mb-2">
                                     <input type="checkbox" class="custom-control-input send sticks"
                                            id="sticks"
@@ -50,7 +50,7 @@
                                         para</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <div class="number-input" style="position: absolute; right: 15px;">
                                     <button type="button"
                                             onclick="oneLessCart(this.parentNode.querySelector('input[type=number]'))">

@@ -55,11 +55,12 @@ class CartController extends Controller
             $cart = Cart::getCart();
             if ($cart) {
                 $product = Product::find($request->product_id);
-                if(!$product->product_category->active or !$product->active){
+                if (!$product->product_category->active or !$product->active) {
                     return HelperFront::responseJsonError('Lo sentimos este producto no puede ser pedido por ahora.');
                 }
                 if ($product) {
-                    if ($cart->addToCart($product->id)) {
+                    $attributes = $request->get('attributes') ?? null;
+                    if ($cart->addToCart($product->id, null, null, $attributes)) {
                         return HelperFront::responseJsonSuccess('Producto agregado correctamente.', $product);
                     }
                     return HelperFront::responseJsonError('Error al crear el carro');
@@ -88,9 +89,9 @@ class CartController extends Controller
                 }
             }
 
-            if ($request->products) {
-                foreach ($request->products as $key => $value) {
-                    $item = CartItem::where('product_id', $key)->where('cart_id', $cart->id)->first();
+            if ($request->items) {
+                foreach ($request->items as $key => $value) {
+                    $item = CartItem::where('cart_id', $cart->id)->find($key);
                     $item->quantity = $value;
                     $item->save();
 
@@ -140,7 +141,12 @@ class CartController extends Controller
             $cart->save();
 
             foreach ($order->items as $item) {
-                $cart->addToCart($item->product_id, null, $item->quantity);
+                if($item->product_attributes){
+                    $cart->addToCart($item->product_id, null, $item->quantity, json_decode($item->product_attributes));
+                }else{
+                    $cart->addToCart($item->product_id, null, $item->quantity);
+                }
+
             }
 
             return redirect()->route('cart');
@@ -245,19 +251,26 @@ class CartController extends Controller
         foreach ($cart->items as $item) {
 
             $price = $item->product->offer_price ? $item->product->offer_price : $item->product->price;
-            $sub_total = $item->quantity * $price;
-            $total += $sub_total;
 
             $ot = new OrderItem();
             $ot->order_id = $order->id;
             $ot->product_id = $item->product_id;
             $ot->quantity = $item->quantity;
             $ot->price = $price;
-            $ot->subtotal = $sub_total;
+            $ot->extra_price = $item->extra_price ?? null;
+            $ot->subtotal = $item->total;
+            $ot->product_attributes = $item->product_attributes ? json_encode($item->product_attributes->pluck('id')) : null;
+            if (count($item->product_attributes)) {
+                foreach ($item->product_attributes as $product_attribute) {
+                    $ot->extra_description .= '<div class="font-12 italic"><b>' . $product_attribute->attribute->attribute_category->name . '</b> : <span>' . $product_attribute->attribute->name . '</span><div>';
+                }
+            }
+
             $ot->save();
         }
 
-        $order->subtotal = $total;
+        $order->subtotal = $cart->total;
+        $total = $order->subtotal;
 
         if ($order->order_type_id == 2000) {
 

@@ -23,6 +23,9 @@
             <div class="box box-primary">
                 <div class="box-body">
                     <div id="toolbar" class="">
+                        <span id="timer" style="display: none; margin-left: 20px; font-style: italic;"> El sistema recargará los datos en <span
+                                    id="count-down"
+                                    style="font-weight: bold;  font-style: normal;"></span> segundos.</span>
                         {{--<a href="{{ route($route . 'create') }}" class="btn btn-success"><i--}}
                         {{--class="fa fa-plus"></i> {{ $btn_new }}--}}
                         {{--</a>--}}
@@ -66,28 +69,33 @@
                         </thead>
                         <tbody>
 
-                        @foreach($orders as $object)
+                        @foreach($orders as $order)
                             <tr>
                                 <td>
-                                    {{ $object->id }}
+                                    {{ $order->id }}
                                 </td>
                                 <td>
-                                    {{ date('d-m-Y', strtotime($object->created_at)) }}
+                                    {{ date('d-m-Y', strtotime($order->created_at)) }}
                                     <br>
-                                    {{ date('H:i:s', strtotime($object->created_at)) }}
+                                    {{ date('H:i:s', strtotime($order->created_at)) }}
                                 </td>
                                 <td>
-                                    {{ $object->customer->fullname }}<br>
                                     <div>
-                                        <strong>Commentarios</strong> - {{ $object->comments ?? 'Sin comentarios.' }}
+                                        <strong>Cliente</strong> : {{ $order->customer->fullname }}
                                     </div>
-
+                                    <div>
+                                        <strong>Teléfono</strong> : <a
+                                                href="tel:{{ $order->customer->phone }}">{{ $order->customer->phone }}</a>
+                                    </div>
+                                    <div>
+                                        <strong>Commentarios</strong> : {{ $order->comments ?? 'Sin comentarios.' }}
+                                    </div>
                                 </td>
 
                                 <td>
                                     <div>
                                         <div>
-                                            @if($object->wasabi)
+                                            @if($order->wasabi)
                                                 <i class="fa fa-check text-green"></i>
                                             @else
                                                 <i class="fa fa-times text-red"></i>
@@ -95,7 +103,7 @@
                                             Wasabi
                                         </div>
                                         <div>
-                                            @if($object->ginger)
+                                            @if($order->ginger)
                                                 <i class="fa fa-check text-green"></i>
                                             @else
                                                 <i class="fa fa-times text-red"></i>
@@ -103,8 +111,8 @@
                                             Jengibre
                                         </div>
                                         <div>
-                                            @if($object->sticks)
-                                                <i class="fa fa-check text-green"></i> {{ $object->sticks_quantity }}
+                                            @if($order->sticks)
+                                                <i class="fa fa-check text-green"></i> {{ $order->sticks_quantity }}
                                                 Palitos
                                             @else
                                                 <i class="fa fa-times text-red"></i> 0 Palitos
@@ -112,7 +120,7 @@
                                         </div>
                                     </div>
                                 <td>
-                                    @if($object->order_type_id == 1000)
+                                    @if($order->order_type_id == 1000)
                                         <span class="badge bg-awesome bg-blue">
                                             <i class="fa fa-home"></i> Retiro Local
                                         </span>
@@ -124,60 +132,110 @@
                                 </td>
                                 <td>
                                     <span class="badge bg-awesome"
-                                          style="color:{{$object->order_status->color}}; background: {{$object->order_status->background}}">
-                                        {{ $object->order_status->name }}
+                                          style="color:{{$order->order_status->color}}; background: {{$order->order_status->background}}">
+                                        {{ $order->order_status->name }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="right">
-                                        {{ '$ ' .  number_format($object->total, 0, ',', '.') }}
+                                        {{ '$ ' .  number_format($order->total, 0, ',', '.') }}
                                     </span>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                            data-target="#modal-detail-{{ $object->id }}"><i class="fa fa-eye"></i> Ver
+                                            data-target="#modal-detail-{{ $order->id }}"><i class="fa fa-eye"></i> Ver
                                     </button>
 
-                                    <div id="modal-detail-{{ $object->id }}" class="modal fade" role="dialog">
+                                    <div id="modal-detail-{{ $order->id }}" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;
                                                     </button>
-                                                    <h4 class="modal-title">Detalle del Pedido Nº {{ $object->id }}</h4>
+                                                    <h4 class="modal-title">Detalle del Pedido Nº {{ $order->id }}</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                        <tr>
-                                                            <th style="width: 30%;">Producto</th>
-                                                            <th>Precio</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Subtotal</th>
-                                                        </tr>
-                                                        </thead>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <strong>Cliente</strong> : {{ $order->customer->fullname }}
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <strong>Email</strong> : {{ $order->customer->email }}
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <strong>Teléfono</strong> : <a
+                                                                    href="tel:{{ $order->customer->phone }}">{{ $order->customer->phone }}</a>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <strong>Commentarios</strong>
+                                                            : {{ $order->comments ?? 'Sin comentarios.' }}
+                                                        </div>
 
-                                                        <tbody>
-                                                        @foreach($object->items as $item)
+                                                        @if($order->order_type_id == 2000)
+                                                            <div class="col-md-12">
+                                                                <strong>Tipo Pedido</strong> :
+                                                                {{ $order->order_type->name }}
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <strong>Dirección</strong> :
+                                                                {{  $order->address ? $order->address->address : ''}}
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <strong>Forma de Pago</strong> :
+                                                                {{ $order->payment }}
+                                                            </div>
+                                                        @else
+                                                            <div class="col-md-12">
+                                                                <strong>Tipo Pedido</strong> :
+                                                                {{ $order->order_type->name }}
+                                                            </div>
+                                                        @endif
 
-                                                            <tr>
-                                                                <td style="width: 30%; max-width: 30%; word-break: normal;">
-                                                                    <h5>{{ $item->product_id ?? $item->product_id }}</h5>
-                                                                    {{--<div class="font-10">--}}
-                                                                    {{--{{ $item->product->description }}--}}
-                                                                    {{--</div>--}}
-                                                                </td>
-                                                                <td>
-                                                                    $<span class="pull-right">{{  number_format($item->price, 0, ',', '.')  }}
-                                                                </td>
-                                                                <td class="text-center">{{ $item->quantity }}</td>
-                                                                <td>
-                                                                    $<span class="right">{{  number_format($item->subtotal, 0, ',', '.')  }}
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                        <div class="col-md-12"
+                                                             style="padding-top: 10px;padding-bottom: 10px;">
+                                                            <strong>Detalle</strong>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th style="width: 30%;">Producto</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Subtotal</th>
+                                                                </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                @foreach($order->items as $item)
+
+                                                                    <tr>
+                                                                        <td style="width: 30%; max-width: 30%; word-break: normal;">
+                                                                            <h5>{{$item->product->name ?? '' }}</h5>
+                                                                            <div>
+                                                                                {!! $item->extra_description !!}
+                                                                            </div>
+                                                                            {{--<div class="font-10">--}}
+                                                                            {{--{{ $item->product->description }}--}}
+                                                                            {{--</div>--}}
+                                                                        </td>
+                                                                        <td>
+                                                                            @php
+                                                                                $price = $item->price +  $item->extra_price ?? 0
+                                                                            @endphp
+                                                                            $<span class="pull-right">{{  number_format($price, 0, ',', '.')  }}
+                                                                        </td>
+                                                                        <td class="text-center">{{ $item->quantity }}</td>
+                                                                        <td>
+                                                                            $<span class="right">{{  number_format($item->subtotal, 0, ',', '.')  }}
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
 
                                                 </div>
                                             </div>
@@ -187,17 +245,17 @@
                                 </td>
                                 <td>
 
-                                    @if($object->status == 1)
+                                    @if($order->status == 1000)
                                         <form action="{{ route('backoffice.pedidos.change-status') }}" method="post">
                                             @csrf()
-                                            <input type="hidden" name="order_id" value="{{ $object->id }}">
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <button class="btn btn-success btn-sm" title="Marcar como Terminado"><i
                                                         class="fa fa-check"></i></button>
                                         </form>
                                     @else
                                         <form action="{{ route('backoffice.pedidos.change-status') }}" method="post">
                                             @csrf()
-                                            <input type="hidden" name="order_id" value="{{ $object->id }}">
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <button class="btn btn-danger btn-sm" title="Marcar como nuevo"><i
                                                         class="fa fa-plus"></i></button>
                                         </form>
@@ -236,7 +294,20 @@
 
 
     <script>
+        $(document).ready(function () {
+            setInterval(function () {
+                window.location.reload();
+            }, 180000);
 
+            var number = 180 + 1;
+
+            setInterval(function () {
+                $("#timer").show();
+                $("#count-down").html('');
+                number = number - 1;
+                $("#count-down").html(number);
+            }, 1000);
+        });
 
     </script>
 

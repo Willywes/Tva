@@ -17,6 +17,7 @@ class Customer extends Authenticatable
         'rut',
         'firstname',
         'lastname',
+        'phone',
         'email',
         'password',
         'created_at',

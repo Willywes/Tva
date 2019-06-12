@@ -48,7 +48,7 @@ class Cart extends Model
         $id = $customer_id ? $customer_id : auth()->guard('customer')->user()->id;
         $customer = Customer::findOrFail($id);
 
-        $cart = self::with(['items.product'])
+        $cart = self::with(['items.product', 'items.product_attributes.attribute.attribute_category'])
             ->withCount('items')
             ->where('customer_id', $customer->id)
             ->latest()->first();
@@ -72,9 +72,8 @@ class Cart extends Model
         }
     }
 
-    function addToCart($product_id, $cart_id = null, $quantity = null)
+    function addToCart($product_id, $cart_id = null, $quantity = null, $attributes = null)
     {
-
         $product = Product::find($product_id);
 
         if ($product) {
@@ -85,21 +84,48 @@ class Cart extends Model
                 ->where('cart_id', $cart_id ? $cart_id : $this->id)
                 ->first();
 
-            if ($item) {
-                $item->quantity = $quantity ? $quantity : $item->quantity + 1;
-                $item->save();
-
-            } else {
+            if (!$item) {
                 $item = CartItem::create([
                     'product_id' => $product->id,
                     'cart_id' => $cart_id ? $cart_id : $this->id,
                     'quantity' => $quantity ? $quantity : 1,
                 ]);
-            }
-            if ($item) {
+                if ($attributes != null) {
+                    $item->product_attributes()->sync($attributes);
+                }
+                return true;
+
+            } else {
+
+                if ($attributes != null) {
+
+                    $items = CartItem::where('product_id', $item->product_id)->where('cart_id', $item->cart_id)->get();
+
+                    foreach ($items as $ite) {
+                        if ($ite->product_attributes()->pluck('product_attributes.id')->all() == $attributes) {
+                            $ite->quantity = $quantity ? $quantity : $ite->quantity + 1;
+                            $ite->save();
+                            return true;
+                        }
+                    }
+
+                    $item = CartItem::create([
+                        'product_id' => $product->id,
+                        'cart_id' => $cart_id ? $cart_id : $this->id,
+                        'quantity' => $quantity ? $quantity : 1,
+                    ]);
+
+                    if ($attributes != null) {
+                        $item->product_attributes()->sync($attributes);
+                    }
+                    return true;
+
+                }
+
+                $item->quantity = $quantity ? $quantity : $item->quantity + 1;
+                $item->save();
                 return true;
             }
-            return false;
         }
         return false;
     }

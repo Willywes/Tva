@@ -85,6 +85,14 @@
         .mb-4{
           margin-bottom: 1.5em;
         }
+
+        .font-12{
+            font-size: 12;
+        }
+
+        .italic{
+            font-style: italic;
+        }
     </style>
 </head>
 
@@ -94,14 +102,15 @@
 
     <div class="text-center">
         <img style="width: 200px;"
-             src="/hsushi/images/logo-negro.svg"
+             src="https://www.hsushi.cl/img/hsushi-logo-1521781079.jpg"
+             {{--src="/hsushi/images/logo-negro.svg"--}}
              alt="">
     </div>
 
     <div class="card mb-4 mt-2" style="border-top: 5px solid #bb2f26;">
         <div class="card-body">
 
-            <h4 class="text-center">Resumen pedido nº {{ $order->id }}</h4>
+            <h4 class="text-center">Resumen pedido Nº {{ $order->id }}</h4>
             <h5 class="text-muted text-center">{{ date('d-m-Y H:i', strtotime($order->created_at)) }}</h5>
 
             <hr/>
@@ -197,10 +206,16 @@
                 <tbody>
                 @foreach($order->items as $item)
                     <tr>
-                        <td>{{ $item->product->name  }}</td>
-                        <td class="text-right">${{ number_format($item->price, 0 ,',','.') }}</td>
+                        <td>
+                            {{ $item->product->name }}
+                            {!! $item->extra_description ?? '' !!}
+                        </td>
+                        @php
+                         $price = $item->price + $item->extra_price ?? 0;
+                        @endphp
+                        <td class="text-right">${{ number_format($price, 0 ,',','.') }}</td>
                         <td class="text-center">{{ $item->quantity }}</td>
-                        <td class="text-right">${{ number_format($item->price, 0 ,',','.') }}</td>
+                        <td class="text-right">${{ number_format($item->subtotal, 0 ,',','.') }}</td>
                     </tr>
                 @endforeach
                 <tr>
