@@ -7,15 +7,15 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://coverfiles.alphacoders.com/478/47866.jpg" alt="First slide">
+            <img class="d-block w-100" src="https://media.licdn.com/dms/image/C4E1BAQEL_z64Zi-5IQ/company-background_10000/0?e=2159024400&v=beta&t=Qxtf38Suc-RRywz5J9QN3CFOGWLrlU3yXvfI0Vd6m_Q" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="http://www.twitrcovers.com/wp-content/uploads/2014/08/Sushi-l.jpg"
+            <img class="d-block w-100" src="https://purorocknacional.com.ar/wp-content/uploads/2019/03/maiz-1-1500x500.jpg"
                  alt="Second slide">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100"
-                 src="https://www.umami-insider.com/asset/uploads/autumn-travel-brazilian-sushi-roll.jpg"
+                 src="http://www.agrocruzgroup.com/img/home/agrocruz-3.jpg"
                  alt="Third slide">
         </div>
     </div>

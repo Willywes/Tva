@@ -29,7 +29,7 @@
 
     @yield('styles')
 
-    <title>Hollywood Sushi</title>
+    <title>Tienda Virtual Agrícola</title>
 
 </head>
 <body>
@@ -39,13 +39,9 @@
 
 @yield('top')
 
-@include('frontend.template.layouts.parallax1')
 
 @yield('content')
 
-@include('frontend.template.layouts.parallax2')
-
-@include('frontend.template.layouts.ubicacion')
 
 @include('frontend.template.layouts.footer')
 
@@ -58,7 +54,7 @@
                 <div class="text-center font-22">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="/#carta" onclick="closeASModal('modal-menu');" style="color: white; text-decoration: none;">Carta</a>
+                            <a href="/#carta" onclick="closeASModal('modal-menu');" style="color: white; text-decoration: none;">Productos</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('profile.addresses') }}" style="color: white; text-decoration: none;">Mi Cuenta</a>
