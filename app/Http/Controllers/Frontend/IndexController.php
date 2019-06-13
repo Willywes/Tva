@@ -17,12 +17,12 @@ class IndexController extends Controller
 
     public function index()
     {
-        $destacados = Product::with('product_category')
-            ->where('active',  1)
-            ->where('offer', 1)
-            ->orWhere('offer_price','>', 0)
-            ->orderBy('position')
-            ->get();
+//        $destacados = Product::with('product_category')
+//            ->where('active',  1)
+//            ->where('offer', 1)
+//            ->orWhere('offer_price','>', 0)
+//            ->orderBy('position')
+//            ->get();
 
         $products_categories = ProductCategory::with('products')
             ->orderBy('position')
@@ -33,7 +33,7 @@ class IndexController extends Controller
             })
             ->get();
 
-        return view('frontend.inicio.index', compact('products_categories', 'destacados'));
+        return view('frontend.inicio.index', compact('products_categories'));
     }
 
     public function pro(){

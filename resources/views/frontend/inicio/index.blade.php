@@ -4,7 +4,7 @@
 
     @include('frontend.inicio._carousel')
 
-    @include('frontend.inicio._destacados')
+    {{--@include('frontend.inicio._destacados')--}}
 
 @endsection
 
