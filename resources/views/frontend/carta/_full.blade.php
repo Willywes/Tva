@@ -11,7 +11,7 @@
                                     <div class="card-header" id="heading_cat_{{$pc->id}}">
                                         <div onclick="accordionToTop('heading_cat_{{$pc->id}}')"
                                              data-toggle="collapse"
-                                             data-target="#collapse_cat_{{$pc->id}}" aria-expanded="false"
+                                             data-target="#collapse_cat_{{$pc->id}}" aria-expanded="true"
                                              aria-controls="collapse_cat_{{$pc->id}}" class="collapse-cat">
                                             <h4 class="mb-0 light">
                                                 {{$pc->name}}
@@ -23,7 +23,7 @@
                                         </div>
 
                                     </div>
-                                    <div id="collapse_cat_{{$pc->id}}" class="collapse"
+                                    <div id="collapse_cat_{{$pc->id}}" class="collapse show"
                                          aria-labelledby="heading_cat_{{$pc->id}}" data-parent="#accordion-carta">
                                         <div class="card-body p-2 p-md-0">
                                             <div class="row equal">
