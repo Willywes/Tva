@@ -411,7 +411,7 @@ function renderFullCart(cart) {
                     '    <td class="no-wrap-td">' +
                     '        <div class="text-center">' +
                     '            <button type="button" class="btn btn-link btn-times light" onclick="removeFromCart(' + item.id + ');">' +
-                    '                <img title="Quitar producto del carro" src="/hsushi/images/ic-times.svg" width="36px">' +
+                    '                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" width="36px">' +
                     '            </button>' +
                     '        </div>' +
                     '    </td>' +
@@ -484,13 +484,14 @@ function renderAddresses(addresses) {
 function newAddress(input) {
     var address = $('#' + input).val();
     if (address) {
-        validateAddress(input, function (response) {
-            if(response.status == 'success'){
-                addAddress();
-            }else{
-                renderMessage(input, response.title, response.message, response.alert);
-            }
-        });
+        addAddress();
+        // validateAddress(input, function (response) {
+        //     if(response.status == 'success'){
+        //
+        //     }else{
+        //         renderMessage(input, response.title, response.message, response.alert);
+        //     }
+        // });
     } else {
         renderMessage(input, '¡Error!', 'Ingrese una direccion.', 'danger');
     }

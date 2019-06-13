@@ -53,7 +53,7 @@
                                                 </div>
                                                 <div>Puedes cancelar con efectivo o</div>
                                                 <div>
-                                                    <img src="/hsushi/images/redcompra-full.png" width="100%">
+                                                    <img src="/tva/images/redcompra-full.png" width="100%">
                                                 </div>
                                             </div>
                                         </div>

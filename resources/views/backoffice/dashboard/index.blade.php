@@ -1,6 +1,6 @@
 @extends('backoffice.template.base')
 
-@section('content-title','Hollywood Sushi')
+@section('content-title','TVA')
 
 @section('content-subtitle', 'Dashboard')
 

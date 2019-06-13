@@ -1,7 +1,7 @@
 
 <button type="button" class="btn btn-link p-0" data-asmodal="modal-login"
         style="cursor: pointer;">
-    <img src="/hsushi/images/ic-user.svg" alt="Hollywood Sushi" width="" height="30"
+    <img src="/tva/images/ic-user.svg" alt="TVA" width="" height="30"
          style="margin-top: 4px; margin-right: 12px;">
 </button>
 

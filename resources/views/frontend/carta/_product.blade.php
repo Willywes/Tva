@@ -48,7 +48,7 @@
                 {{--@endif--}}
 
                 {{--<a href="" class="right">--}}
-                {{--<img class="add-pedido" src="/hsushi/images/bt-agregar-menu.svg" alt="Hollywood Sushi" width="" height="55">--}}
+                {{--<img class="add-pedido" src="/tva/images/bt-agregar-menu.svg" alt="TVA" width="" height="55">--}}
                 {{--</a>--}}
             </div>
         </div>

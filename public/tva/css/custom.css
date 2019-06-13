@@ -845,7 +845,7 @@ html, body {
 .add-pedido {
     height: 60px;
     width: 60px;
-    background: url('/hsushi/images/bt-agregar-menu.svg');
+    background: url('/tva/images/bt-agregar-menu.svg');
     transition: all .1s ease-in-out;
     -webkit-background-size: cover;
     background-size: cover;
@@ -856,7 +856,7 @@ html, body {
 .add-pedido:hover,
 .add-pedido:focus {
 
-    background: url('/hsushi/images/bt-agregar-menu-hover.svg');
+    background: url('/tva/images/bt-agregar-menu-hover.svg');
     -webkit-background-size: cover;
     background-size: cover;
     transform: scale(1.05);

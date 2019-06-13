@@ -7,7 +7,7 @@
                         {{--<h3 class="card-title">Nuestra Carta</h3>--}}
                         <div class="row">
                             <div class="col-md-5 text-center p-4 font-20 light">
-                                <img src="/hsushi/images/ic-gps.svg" width="60px">
+                                <img src="/tva/images/ic-gps.svg" width="60px">
                                 <p>
                                     Estamos en <br>
                                     Padre Alfredo Arteaga #1929 <br>
@@ -30,7 +30,7 @@
                                     </button>
                                 </p>
                                 <p>
-                                    <button type="button" onclick="goGoogleMaps();" style="min-width: 232px; width: 100%; max-width: 320px;" class="btn btn-lg main-bg p-0 text-white">
+                                    <button type="button" onclick="" style="min-width: 232px; width: 100%; max-width: 320px;" class="btn btn-lg main-bg p-0 text-white">
                                         <div class="btn-ubica left text-left text-button px-3 py-1">
                                             Retiro en Tienda <br>
                                             <span class="semibold">¿Como Llegar?</span>
@@ -42,7 +42,7 @@
                                 </p>
                             </div>
                             <div class="col-md-7 p-3">
-                                <img src="/hsushi/images/zona-reparto.png" class="img-fluid" alt="Hollywood Sushi - Zona de Reparto">
+                                <img src="/tva/images/zona-reparto.png" class="img-fluid" alt="TVA - Zona de Reparto">
                             </div>
                         </div>
 

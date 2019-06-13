@@ -1,7 +1,7 @@
 <div class="dropdown">
     <button class="btn btn-link nav-link p-0  dropdown-toggle" type="button" id="cartDrowpdown"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="/hsushi/images/ic-pedido3.svg" alt="Hollywood Sushi" width="" height="40"
+        <img src="/tva/images/ic-pedido3.svg" alt="TVA" width="" height="40"
              style="margin-right: -10px;">
         <div id="items-count-content" style="display: none;" class="cart-badge">
             <span id="items-count"

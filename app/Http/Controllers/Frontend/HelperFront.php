@@ -83,7 +83,7 @@ class HelperFront
 
             Mail::send(['html' => 'emails.mail'], $data, function ($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject('Resumen de pedido');
-                $message->from('pedidohsushi@gmail.com', 'Pedidos Hollywood Sushi');
+                $message->from('pedidohsushi@gmail.com', 'Pedidos TVA');
             });
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -105,7 +105,7 @@ class HelperFront
 
             Mail::send(['html' => 'emails.recovery'], $data, function ($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject('Nueva Contraseña');
-                $message->from('pedidohsushi@gmail.com', 'Hollywood Sushi');
+                $message->from('pedidohsushi@gmail.com', 'TVA');
             });
         } catch (\Exception $e) {
             return $e->getMessage();

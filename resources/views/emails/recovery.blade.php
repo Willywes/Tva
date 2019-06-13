@@ -102,8 +102,8 @@
 
     <div class="text-center">
         <img style="width: 200px;"
-             src="https://www.hsushi.cl/img/hsushi-logo-1521781079.jpg"
-             {{--src="/hsushi/images/logo-negro.svg"--}}
+             src=""
+             {{--src="/tva/images/logo-negro.svg"--}}
              alt="">
     </div>
 
@@ -124,9 +124,9 @@
 
     <div class="card w-100 mb-4">
         <div class="card-body">
-            <h4 class="text-center">Gracias por preferir Hollywood Sushi.</h4>
+            <h4 class="text-center">Gracias por preferir TVA.</h4>
             <br>
-            <div class="text-center text-red"><a target="_blank" class="text-red" href="https://www.hsushi.cl">Hollywood Sushi</a></div>
+            <div class="text-center text-red"><a target="_blank" class="text-red" href="/">TVA</a></div>
             <div class="text-center text-red">Padre Alfredo Arteaga Barros 1929, Lo Barnechea, Región Metropolitana
             </div>
             <div class="text-center text-red mb-4">Teléfono Pedidos <strong><a target="_blank" href="tel:+56222163171">2 2216
