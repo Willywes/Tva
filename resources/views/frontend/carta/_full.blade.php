@@ -6,7 +6,7 @@
                     <div class="card-body p-3 py-md-4 px-md-5">
                         <h3 class="card-title text-center">Productos</h3>
                         <div id="accordion-carta">
-                            @foreach($products_categories as $pc)
+                            @forelse($products_categories as $pc)
                                 <div class="card card-carta">
                                     <div class="card-header" id="heading_cat_{{$pc->id}}">
                                         <div onclick="accordionToTop('heading_cat_{{$pc->id}}')"
@@ -36,7 +36,20 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @empty
+                                <p class="text-center">Lo sentimos, en estos momentos no tenemos productos disponibles</p>
+                                <p class="text-center">
+                                    <button type="button" onclick="location.href = '{{route('init')}}'"
+                                            class="btn btn-lg main-bg p-0 text-white">
+                                        <div class="left text-left text-button px-3 py-2">
+                                            Volver al inicio
+                                        </div>
+                                        <div class="right icon-button px-3 py-2 ">
+                                            <i class="fas fa-home"></i>
+                                        </div>
+                                    </button>
+                                </p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

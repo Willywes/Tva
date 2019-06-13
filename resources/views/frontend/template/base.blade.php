@@ -40,7 +40,9 @@
 @yield('top')
 
 
-@yield('content')
+<div class="mt-5">
+    @yield('content')
+</div>
 
 
 @include('frontend.template.layouts.footer')

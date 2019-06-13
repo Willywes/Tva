@@ -25,7 +25,7 @@ class IndexController extends Controller
     }
 
     public function getShop($shop){
-        
+
         $shop = Shop::where('slug', $shop)->first();
 
         if(!$shop){
@@ -39,6 +39,7 @@ class IndexController extends Controller
             ->orderBy('position')
             ->where('active',  1)
             ->where('id', '<>', 1)
+            ->where('shop_id', $shop->id)
             ->whereHas('products', function($q){
                 $q->where('active', 1);
             })
