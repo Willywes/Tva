@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="{{ route('backoffice') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>H</b>S</span>
+        <span class="logo-mini"><b>T</b>VA</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Hollywood</b>Sushi</span>
+        <span class="logo-lg"><b>Tienda </b>Virtual Agrícola</span>
     </a>
 
     <!-- Header Navbar -->

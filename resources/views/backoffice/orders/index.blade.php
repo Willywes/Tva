@@ -57,7 +57,6 @@
                             <th data-cell-style="cellStyle" data-sortable="true">Nº</th>
                             <th data-cell-style="cellStyle" data-sortable="true">Fecha</th>
                             <th data-cell-style="midAling" data-sortable="true">Cliente - Comentarios</th>
-                            <th data-cell-style="cellStyle" data-sortable="true">Adicionales</th>
                             <th data-cell-style="cellStyle" data-sortable="true">Delivery</th>
                             <th data-cell-style="cellStyle" data-sortable="true">Estado</th>
                             <th data-cell-style="cellStyle" data-sortable="true">Total</th>
@@ -92,34 +91,7 @@
                                     </div>
                                 </td>
 
-                                <td>
-                                    <div>
-                                        <div>
-                                            @if($order->wasabi)
-                                                <i class="fa fa-check text-green"></i>
-                                            @else
-                                                <i class="fa fa-times text-red"></i>
-                                            @endif
-                                            Wasabi
-                                        </div>
-                                        <div>
-                                            @if($order->ginger)
-                                                <i class="fa fa-check text-green"></i>
-                                            @else
-                                                <i class="fa fa-times text-red"></i>
-                                            @endif
-                                            Jengibre
-                                        </div>
-                                        <div>
-                                            @if($order->sticks)
-                                                <i class="fa fa-check text-green"></i> {{ $order->sticks_quantity }}
-                                                Palitos
-                                            @else
-                                                <i class="fa fa-times text-red"></i> 0 Palitos
-                                            @endif
-                                        </div>
-                                    </div>
-                                <td>
+                               <td>
                                     @if($order->order_type_id == 1000)
                                         <span class="badge bg-awesome bg-blue">
                                             <i class="fa fa-home"></i> Retiro Local
