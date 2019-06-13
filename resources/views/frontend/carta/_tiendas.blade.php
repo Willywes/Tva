@@ -9,7 +9,8 @@
                             @foreach($shops as $shop)
                                 <div class="col-md-3 mb-4 text-center">
                                     <div class="box-pro-cat card-shop">
-                                        <img src="{{ $shop->logo }}" class="img-fluid" style="background: white;">
+                                        <a href="{{ route('shop', [ 'id' => $shop->slug ] ) }}"
+                                           class=""><img src="{{ $shop->logo }}" class="img-fluid" style="background: white;"></a>
                                         <h3 class="light text-center my-3">{{ $shop->shop_name }}</h3>
                                         <a href="{{ route('shop', [ 'id' => $shop->slug ] ) }}"
                                            class="text-center btn btn-dark main-bg btn">Visitar</a>
