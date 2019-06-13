@@ -50,9 +50,7 @@
                             </div>
                         </div>
                     @else
-
                         @include('frontend.template.layouts._auth_modal')
-
                     @endif
                 </li>
                 <li class="nav-item">
