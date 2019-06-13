@@ -170,16 +170,16 @@
                     </tr>
                 @endif
 
-                <tr>
-                    <td style="width: 30%">
-                        <strong>Adicional</strong>
-                    </td>
-                    <td colspan="3">
-                        <div><strong>Wasabi</strong> {{ $order->wasabi ? 'SI' : 'NO' }} ,
-                            <strong>Gengibre</strong> {{ $order->ginger ? 'SI' : 'NO' }},
-                            <strong>Palitos</strong> {{ $order->sticks ? $order->sticks_quantity : 'NO'}}</div>
-                    </td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td style="width: 30%">--}}
+                        {{--<strong>Adicional</strong>--}}
+                    {{--</td>--}}
+                    {{--<td colspan="3">--}}
+                        {{--<div><strong>Wasabi</strong> {{ $order->wasabi ? 'SI' : 'NO' }} ,--}}
+                            {{--<strong>Gengibre</strong> {{ $order->ginger ? 'SI' : 'NO' }},--}}
+                            {{--<strong>Palitos</strong> {{ $order->sticks ? $order->sticks_quantity : 'NO'}}</div>--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
 
                 <tr>
                     <td style="width: 30%">

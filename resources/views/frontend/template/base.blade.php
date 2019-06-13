@@ -125,6 +125,36 @@
 @yield('scripts')
 
 @include('frontend.carta._script-products')
+<script>
 
+    function renderMessage(div, title = null, message = null, alert = null) {
+        var title = title ? title : 'Error';
+        var message = message ? message : 'Algo no ha salido bien.';
+        var alert = alert ? alert : 'danger';
+        $('#' + div + '-message').html('');
+        $('#' + div + '-message').append($('<div class="alert alert-' + alert + '" role="alert">' +
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+            '   <span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '<h4 class="alert-heading">' + title + '</h4>' +
+            '<p>' + message + '</p>' +
+            '</div>'));
+    }
+
+    function validateLogin() {
+        var logged = '{{ auth()->guard('customer')->user() }}';
+        if (!logged) {
+
+            $('#modalProduct').modal('hide');
+            $('#modalProduct').on('hidden.bs.modal', function (e) {
+                $('#modal-login').addClass('active ultra-faster');
+            });
+            $('#modal-login').addClass('active ultra-faster');
+            // animateCSS('#' + data, 'zoomIn');
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

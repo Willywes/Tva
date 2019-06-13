@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card card-awesome">
                     <div class="card-body p-3 py-md-4 px-md-5">
-                        <h3 class="card-title">Productos</h3>
+                        <h3 class="card-title text-center">Productos</h3>
                         <div id="accordion-carta">
                             @foreach($products_categories as $pc)
                                 <div class="card card-carta">

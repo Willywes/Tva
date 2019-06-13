@@ -10,7 +10,7 @@
 
 @section('content')
 
-    @include('frontend.carta._tiendas')
+    @include('frontend.carta._full')
 
 @endsection
 

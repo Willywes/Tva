@@ -12,6 +12,7 @@ class Shop extends Model
         'rut',
         'business_name',
         'shop_name',
+        'slug',
         'shop_description',
         'address',
         'shop_phone_one',

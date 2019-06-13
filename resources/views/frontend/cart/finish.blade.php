@@ -41,7 +41,7 @@
                                                         Te esperamos en <br>
                                                         <span class="">
                                                         <a target="_blank" class="link-finish"
-                                                           href="https://www.google.com/maps/dir//Hollywood+Sushi+-+Padre+Alfredo+Arteaga+Barros+1929,+Lo+Barnechea,+Regi%C3%B3n+Metropolitana/@-33.3524251,-70.5125414,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x9662cbc47266550b:0xcb1b22bf606f8c8d!2m2!1d-70.5103527!2d-33.3524296!3e0"> Padre Alfredo Arteaga Barros 1929, Lo Barnechea, Región Metropolitana</a>
+                                                           href="https://www.google.com/maps?q=duoc+vi%C3%B1a&rlz=1C5CHFA_enCL803CL803&um=1&ie=UTF-8&sa=X&ved=0ahUKEwjL4fXNyeXiAhVdILkGHcYfAzsQ_AUIECgB"> Santiago, Región Metropolitana</a>
                                                     </span>
                                                     </div>
                                                 </div>

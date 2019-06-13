@@ -63,8 +63,8 @@ $('.close-as-modal').click(function (e) {
     e.preventDefault();
 });
 
-function closeASModal(modal){
-    var element = $('#' +  modal);
+function closeASModal(modal) {
+    var element = $('#' + modal);
     element.removeClass('ultra-faster');
     animateCSS('#' + element.attr('id'), 'bounceOutUp', function () {
         element.removeClass('active');
@@ -193,21 +193,28 @@ function getCart() {
     });
 }
 
-function addToCart(product_id) {
+function addToCart(product_id, attributes = null) {
+
+    var data = {
+        product_id: product_id
+    };
+
+    if (attributes) {
+        data = product_id;
+        console.log(data);
+    }
 
     if (validateLogin()) {
         var url = '/cart/add-cart';
         $.ajax({
             type: 'post',
             url: url,
-            data: {
-                product_id: product_id,
-            },
+            data: data,
             success: function (response) {
                 if (response.status == 'success') {
                     getCart();
                     showToastSuccess('Se ha agregado ' + response.data.name, 'De acuerdo');
-                }else{
+                } else {
                     showToastError(response.message, response.status);
                 }
             },
@@ -276,16 +283,16 @@ function oneMoreCart(input) {
 
 
 function renderCart(cart) {
-    cart.wasabi ? $('.wasabi').prop('checked', 'checked') : $('.wasabi').prop('checked', '');
-    cart.ginger ? $('.ginger').prop('checked', 'checked') : $('.ginger').prop('checked', '');
-    cart.sticks ? $('.sticks').prop('checked', 'checked') : $('.sticks').prop('checked', '');
-    if ($('.sticks').prop('checked')) {
-        $('.sticks_quantity').parent('.number-input').show();
-        $('.sticks_quantity').val(cart.sticks_quantity);
-    } else {
-        $('.sticks_quantity').parent('.number-input').hide();
-        $('.sticks_quantity').val(1);
-    }
+    // cart.wasabi ? $('.wasabi').prop('checked', 'checked') : $('.wasabi').prop('checked', '');
+    // cart.ginger ? $('.ginger').prop('checked', 'checked') : $('.ginger').prop('checked', '');
+    // cart.sticks ? $('.sticks').prop('checked', 'checked') : $('.sticks').prop('checked', '');
+    // if ($('.sticks').prop('checked')) {
+    //     $('.sticks_quantity').parent('.number-input').show();
+    //     $('.sticks_quantity').val(cart.sticks_quantity);
+    // } else {
+    //     $('.sticks_quantity').parent('.number-input').hide();
+    //     $('.sticks_quantity').val(1);
+    // }
     $('.totals').html(cart.total.toLocaleString('es-CL'));
 
     if (cart.items.length > 0) {
@@ -323,31 +330,88 @@ function renderMiniCart(cart) {
                 current = '$ ' + item.product.price.toLocaleString('es-CL');
             }
 
-            var row = $('<div class="col-md-12">' +
-                '<div class="row no-gutters">' +
-                '   <div class="col-5 mr-0 pr-0">' +
-                '       <img style="border-radius: 5px;" src="' + item.product.image + '" class="img-fluid">' +
-                '   </div>' +
-                '   <div class="col-7 pl-2 mc-row-box">' +
-                '       <div class="product-title">' +
-                '           <h4>' + item.product.name + '</h4>' +
-                '       </div>' +
-                '       <div class="row no-gutters mc-to-bottom">' +
-                '          <div class="col-5">' +
-                '            <div class="line-through font-13">' + normal + '</div>' +
-                '            <div class="semibold">' + current + '</div>' +
-                '           </div>' +
-                '           <div class="col-7">' +
-                '              <div class="number-input" id="">' +
-                '                   <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))">-</button>' +
-                '                   <input class="quantity" min="0" name="products[' + item.product.id + ']" id="product_' + item.product.id + '" value="' + item.quantity + '" type="number">' +
-                '                   <button type="button"  onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus">+</button>' +
-                '               </div>' +
-                '           </div>' +
-                '       </div>' +
-                '   </div>' +
-                '</div>' +
-                '</div>');
+            var extras = '';
+
+            if (item.product_attributes.length) {
+
+                if (item.offer_price != null) {
+                    normal = '$ ' + item.price.toLocaleString('es-CL');
+                    current = '$ ' + item.offer_price.toLocaleString('es-CL');
+                } else {
+                    normal = '';
+                    current = '$ ' + item.price.toLocaleString('es-CL');
+                }
+
+                var extras = $('<div"></div>');
+                item.product_attributes.forEach(function (product_attribute) {
+                    extras.append($('<strong>' + product_attribute.attribute.attribute_category.name + ': </strong><span> ' + product_attribute.attribute.name + '</span><br>'));
+                });
+                var row = $('<div class="col-md-12">' +
+                    '<div class="row no-gutters">' +
+                    '   <div class="col-5 mr-0 pr-0">' +
+                    '       <img style="border-radius: 5px;" src="' + item.product.image + '" class="img-fluid">' +
+                    '   </div>' +
+                    '   <div class="col-7 pl-2 mc-row-box">' +
+                    '       <div class="product-title">' +
+                    '           <h4>' + item.product.name + '</h4>' +
+                    '<div class="extra-line">' + extras.html() + '</div> ' +
+                    '<div class="text-center remove-cart-icon">' +
+                    '<button type="button" class="btn btn-rounded btn-times light p-0" onclick="removeFromCart(' + item.id + ');">                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" height="20px" width="20px">' +
+                    '</button>' +
+                    '</div>' +
+
+                    '       </div>' +
+                    '       <div class="row no-gutters mc-to-bottom">' +
+                    '          <div class="col-5">' +
+                    '            <div class="line-through font-13">' + normal + '</div>' +
+                    '            <div class="semibold">' + current + '</div>' +
+                    '           </div>' +
+                    '           <div class="col-7">' +
+                    '              <div class="number-input">' +
+                    '                   <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))">-</button>' +
+                    '                   <input class="quantity" min="0" name="items[' + item.id + ']" id="item_' + item.id + '" value="' + item.quantity + '" type="number">' +
+                    '                   <button type="button"  onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus">+</button>' +
+                    '               </div>' +
+                    '           </div>' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>' +
+                    '</div>');
+            }else{
+                var row = $('<div class="col-md-12">' +
+                    '<div class="row no-gutters">' +
+                    '   <div class="col-5 mr-0 pr-0">' +
+                    '       <img style="border-radius: 5px;" src="' + item.product.image + '" class="img-fluid">' +
+                    '   </div>' +
+                    '   <div class="col-7 pl-2 mc-row-box">' +
+                    '       <div class="product-title">' +
+                    '           <h4>' + item.product.name + '</h4>' +
+                    '<div class="text-center remove-cart-icon">' +
+                    '<button type="button" class="btn btn-rounded btn-times light p-0" onclick="removeFromCart(' + item.id + ');">                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" height="20px" width="20px">' +
+                    '</button>' +
+                    '</div>' +
+
+                    '       </div>' +
+                    '       <div class="row no-gutters mc-to-bottom">' +
+                    '          <div class="col-5">' +
+                    '            <div class="line-through font-13">' + normal + '</div>' +
+                    '            <div class="semibold">' + current + '</div>' +
+                    '           </div>' +
+                    '           <div class="col-7">' +
+                    '              <div class="number-input">' +
+                    '                   <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))">-</button>' +
+                    '                   <input class="quantity" min="0" name="items[' + item.id + ']" id="item_' + item.id + '" value="' + item.quantity + '" type="number">' +
+                    '                   <button type="button"  onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus">+</button>' +
+                    '               </div>' +
+                    '           </div>' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>' +
+                    '</div>');
+
+            }
+
+
             cartList.append(row);
         });
     } else {
@@ -381,41 +445,97 @@ function renderFullCart(cart) {
                     current = '$ ' + item.product.price.toLocaleString('es-CL');
                 }
 
-                var row = $('<tr>' +
-                    '    <td class="no-wrap-td">' +
-                    '        <img src="' + item.product.image + '" class="img-product-table"></td>' +
-                    '    <td style="width: 30%;">' +
-                    '        <div class="product-title">' +
-                    '            <h4>' + item.product.name + '</h4>' +
-                    '        </div>' +
-                    '        <div class="font-12 italic">' + item.product.description + '</div>' +
-                    '    </td>' +
-                    '    <td class="no-wrap-td text-center">' +
-                    '        <div class="line-through font-13"> ' + normal + '</span></div>' +
-                    '        <div class="semibold">' + current + '</span></div>' +
-                    '    </td>' +
-                    '    <td class="no-wrap-td text-center">' +
-                    '        <div style="width: 100%;" class="text-center">' +
-                    '            <div class="number-input" id="palitosCounter">' +
-                    '                <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))"> - </button>' +
-                    '                <input class="quantity" min="1"' +
-                    '                       name="products[' + item.product_id + ']"' +
-                    '                       id="product_' + item.product_id + '"' +
-                    '                       value="' + item.quantity + '" type="number">' +
-                    '                <button type="button" onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus"> + </button>' +
-                    '            </div>' +
-                    '        </div>' +
-                    '    </td>' +
-                    '    <td class="no-wrap-td bold main-color">' +
-                    '        $<span class="right">' + item.total.toLocaleString('es-CL') + '</td>' +
-                    '    <td class="no-wrap-td">' +
-                    '        <div class="text-center">' +
-                    '            <button type="button" class="btn btn-link btn-times light" onclick="removeFromCart(' + item.id + ');">' +
-                    '                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" width="36px">' +
-                    '            </button>' +
-                    '        </div>' +
-                    '    </td>' +
-                    '</tr>');
+                var extras = '';
+
+                if (item.product_attributes.length) {
+
+                    if (item.offer_price != null) {
+                        normal = '$ ' + item.price.toLocaleString('es-CL');
+                        current = '$ ' + item.offer_price.toLocaleString('es-CL');
+                    } else {
+                        normal = '';
+                        current = '$ ' + item.price.toLocaleString('es-CL');
+                    }
+
+                    var extras = $('<div"></div>');
+                    item.product_attributes.forEach(function (product_attribute) {
+                        extras.append($('<strong>' + product_attribute.attribute.attribute_category.name + ': </strong><span> ' + product_attribute.attribute.name + '</span><br>'));
+                    });
+
+                    var row = $('<tr>' +
+                        '    <td class="no-wrap-td">' +
+                        '        <img src="' + item.product.image + '" class="img-product-table"></td>' +
+                        '    <td style="width: 30%;">' +
+                        '        <div class="product-title">' +
+                        '            <h4>' + item.product.name + '</h4>' +
+                        '        </div>' +
+                        '        <div class="font-12 italic">' + extras.html() + '</div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td text-center">' +
+                        '        <div class="line-through font-13"> ' + normal + '</span></div>' +
+                        '        <div class="semibold">' + current + '</span></div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td text-center">' +
+                        '        <div style="width: 100%;" class="text-center">' +
+                        '            <div class="number-input">' +
+                        '                <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))"> - </button>' +
+                        '                <input class="quantity" min="1"' +
+                        '                       name="items[' + item.id + ']"' +
+                        '                       id="item_' + item.id + '"' +
+                        '                       value="' + item.quantity + '" type="number">' +
+                        '                <button type="button" onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus"> + </button>' +
+                        '            </div>' +
+                        '        </div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td bold main-color">' +
+                        '        $<span class="right">' + item.total.toLocaleString('es-CL') + '</td>' +
+                        '    <td class="no-wrap-td">' +
+                        '        <div class="text-center">' +
+                        '            <button type="button" class="btn btn-link btn-times light" onclick="removeFromCart(' + item.id + ');">' +
+                        '                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" width="36px">' +
+                        '            </button>' +
+                        '        </div>' +
+                        '    </td>' +
+                        '</tr>');
+
+                }else{
+                    var row = $('<tr>' +
+                        '    <td class="no-wrap-td">' +
+                        '        <img src="' + item.product.image + '" class="img-product-table"></td>' +
+                        '    <td style="width: 30%;">' +
+                        '        <div class="product-title">' +
+                        '            <h4>' + item.product.name + '</h4>' +
+                        '        </div>' +
+                        '        <div class="font-12 italic">' + /*item.product.description*/ '' + '</div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td text-center">' +
+                        '        <div class="line-through font-13"> ' + normal + '</span></div>' +
+                        '        <div class="semibold">' + current + '</span></div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td text-center">' +
+                        '        <div style="width: 100%;" class="text-center">' +
+                        '            <div class="number-input">' +
+                        '                <button type="button" onclick="oneLessCart(this.parentNode.querySelector(\'input[type=number]\'))"> - </button>' +
+                        '                <input class="quantity" min="1"' +
+                        '                       name="items[' + item.id + ']"' +
+                        '                       id="item_' + item.id + '"' +
+                        '                       value="' + item.quantity + '" type="number">' +
+                        '                <button type="button" onclick="oneMoreCart(this.parentNode.querySelector(\'input[type=number]\'))" class="plus"> + </button>' +
+                        '            </div>' +
+                        '        </div>' +
+                        '    </td>' +
+                        '    <td class="no-wrap-td bold main-color">' +
+                        '        $<span class="right">' + item.total.toLocaleString('es-CL') + '</td>' +
+                        '    <td class="no-wrap-td">' +
+                        '        <div class="text-center">' +
+                        '            <button type="button" class="btn btn-link btn-times light" onclick="removeFromCart(' + item.id + ');">' +
+                        '                <img title="Quitar producto del carro" src="/tva/images/ic-times.svg" width="36px">' +
+                        '            </button>' +
+                        '        </div>' +
+                        '    </td>' +
+                        '</tr>');
+                }
+
                 cartList.append(row);
             });
         } else {
@@ -433,7 +553,7 @@ $('.send').click(function () {
 });
 
 $('#comments').change(function () {
-    updateCart({comments : $(this).val()});
+    updateCart({comments: $(this).val()});
 });
 
 // DIRECCIONES
@@ -484,20 +604,19 @@ function renderAddresses(addresses) {
 function newAddress(input) {
     var address = $('#' + input).val();
     if (address) {
-        addAddress();
-        // validateAddress(input, function (response) {
-        //     if(response.status == 'success'){
-        //
-        //     }else{
-        //         renderMessage(input, response.title, response.message, response.alert);
-        //     }
-        // });
+        validateAddress(input, function (response) {
+            if (response.status == 'success') {
+                addAddress();
+            } else {
+                renderMessage(input, response.title, response.message, response.alert);
+            }
+        });
     } else {
         renderMessage(input, '¡Error!', 'Ingrese una direccion.', 'danger');
     }
 }
 
-function addAddress(){
+function addAddress() {
     var url = '/perfil/add-address';
     data = $('#form-new-address').serialize();
     $.ajax({
@@ -510,11 +629,11 @@ function addAddress(){
                 $("#modal-new-address").modal('hide');
                 showToastSuccess('Dirección agregada correctamente.');
             }
-            if(response.status == 'error' && response.code != 409){
+            if (response.status == 'error' && response.code != 409) {
                 showToastError(response.message);
             }
 
-            if(response.code == 409){
+            if (response.code == 409) {
                 $("#modal-new-address").modal('hide');
                 showToastWarning(response.message);
             }

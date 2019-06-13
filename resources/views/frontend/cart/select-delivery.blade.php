@@ -34,20 +34,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-4 offset-md-4 text-center">
-                                    <p class="py-3">Para finalizar, elige entre estas opciones.</p>
+                                    {{--<p class="py-3">Para finalizar, elige entre estas opciones.</p>--}}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 offset-md-3">
+                                <div class="col-4 offset-md-4 mt-5">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <form action="{{ route('order.dispatch-delivery') }}" method="POST">
                                                 <input type="hidden" name="type" value="{{ encrypt(1000) }}">
                                                 @csrf()
                                                 <button style="" class="btn btn-block btn-lg main-bg p-0 text-white">
                                                     <div class="left text-left text-button px-3 py-1">
                                                         Retirar <br>
-                                                        <span class="semibold">en local</span>
+                                                        <span class="semibold">en tienda</span>
                                                     </div>
                                                     <div class="right icon-button font-40"
                                                          style="padding: 5px 23px!important;">
@@ -57,24 +57,24 @@
                                             </form>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <form action="{{ route('order.dispatch-delivery') }}" method="POST">
-                                                @csrf()
-                                                <input type="hidden" name="type" value="{{ encrypt(2000) }}">
-                                                <button style=" float: right;"
-                                                        class="btn btn-block btn-lg main-bg p-0 text-white">
-                                                    <div class="left text-left text-button px-3 py-1">
-                                                        Entrega a <br>
-                                                        <span class="semibold">domicilio</span>
-                                                    </div>
-                                                    <div class="right icon-button font-40"
-                                                         style="padding: 5px 23px!important;">
-                                                        <i class="fas fa-motorcycle"></i>
-                                                    </div>
-                                                </button>
-                                            </form>
+                                        {{--<div class="col-md-6">--}}
+                                            {{--<form action="{{ route('order.dispatch-delivery') }}" method="POST">--}}
+                                                {{--@csrf()--}}
+                                                {{--<input type="hidden" name="type" value="{{ encrypt(2000) }}">--}}
+                                                {{--<button style=" float: right;"--}}
+                                                        {{--class="btn btn-block btn-lg main-bg p-0 text-white">--}}
+                                                    {{--<div class="left text-left text-button px-3 py-1">--}}
+                                                        {{--Entrega a <br>--}}
+                                                        {{--<span class="semibold">domicilio</span>--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="right icon-button font-40"--}}
+                                                         {{--style="padding: 5px 23px!important;">--}}
+                                                        {{--<i class="fas fa-motorcycle"></i>--}}
+                                                    {{--</div>--}}
+                                                {{--</button>--}}
+                                            {{--</form>--}}
 
-                                        </div>
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                                 <div class="col-md-12 mt-4 text-center">

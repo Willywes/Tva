@@ -24,47 +24,9 @@
                     <div class="col-md-12">
                         <hr>
                     </div>
+
                     <div class="col-md-12">
-                        <div class="custom-control custom-checkbox mb-2">
-                            <input type="checkbox" class="custom-control-input send wasabi" id="wasabi"
-                                   name="wasabi">
-                            <label class="custom-control-label" for="wasabi">Wasabi</label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="custom-control custom-checkbox mb-2">
-                            <input type="checkbox" class="custom-control-input send ginger"
-                                   id="ginger"
-                                   name="ginger">
-                            <label class="custom-control-label" for="ginger">Jengibre</label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="custom-control custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input send sticks"
-                                           id="sticks"
-                                           name="sticks">
-                                    <label class="custom-control-label" for="sticks">Palitos
-                                        para</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="number-input" style="position: absolute; right: 15px;">
-                                    <button type="button"
-                                            onclick="oneLessCart(this.parentNode.querySelector('input[type=number]'))">
-                                        -
-                                    </button>
-                                    <input class="quantity sticks_quantity" min="1" name="sticks_quantity"
-                                           value="1" type="number">
-                                    <button type="button"
-                                            onclick="oneMoreCart(this.parentNode.querySelector('input[type=number]'))"
-                                            class="plus">+
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <div class="col-md-12 pt-3">
                                 <button type="button" onclick="location.href='{{route('cart')}}'" style="width: 100%"

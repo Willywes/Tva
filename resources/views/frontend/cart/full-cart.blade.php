@@ -39,51 +39,53 @@
                             <table class="table table-borderless table-cart">
                                 <thead>
                                 <tr>
-                                    <th style="width: 25%">
-                                        <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input send wasabi"
-                                                   id="wasabi2"
-                                                   name="wasabi" {{ $cart->wasabi == true ? 'checked': '' }}>
-                                            <label class="custom-control-label" for="wasabi2">Wasabi</label>
-                                        </div>
-                                    </th>
-                                    <th style="width: 25%">
-                                        <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input send ginger"
-                                                   id="ginger2"
-                                                   name="ginger" {{ $cart->ginger == true ? 'checked': '' }}>
-                                            <label class="custom-control-label" for="ginger2">Jengibre</label>
-                                        </div>
-                                    </th>
-                                    <th style="width: 25%">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="custom-control custom-checkbox mb-2">
-                                                    <input type="checkbox" class="custom-control-input send sticks"
-                                                           id="sticks2"
-                                                           name="sticks" {{ $cart->sticks == true ? 'checked': '' }}>
-                                                    <label class="custom-control-label" for="sticks2">Palitos</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="number-input" id="palitosCounter">
-                                                    <div class="number-input">
-                                                        <button type="button"
-                                                                onclick="oneLessCart(this.parentNode.querySelector('input[type=number]'))">
-                                                            -
-                                                        </button>
-                                                        <input class="quantity sticks_quantity" min="1" name="sticks_quantity"
-                                                               value="{{ $cart->sticks_quantity }}" type="number">
-                                                        <button type="button"
-                                                                onclick="oneMoreCart(this.parentNode.querySelector('input[type=number]'))"
-                                                                class="plus">+
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th style="width: 25%; padding: 0px;" class="bold font-20">
+                                    {{--<th style="width: 25%">--}}
+                                        {{--<div class="custom-control custom-checkbox mb-2">--}}
+                                            {{--<input type="checkbox" class="custom-control-input send wasabi"--}}
+                                                   {{--id="wasabi2"--}}
+                                                   {{--name="wasabi" {{ $cart->wasabi == true ? 'checked': '' }}>--}}
+                                            {{--<label class="custom-control-label" for="wasabi2">Wasabi</label>--}}
+                                        {{--</div>--}}
+                                    {{--</th>--}}
+                                    {{--<th style="width: 25%">--}}
+                                        {{--<div class="custom-control custom-checkbox mb-2">--}}
+                                            {{--<input type="checkbox" class="custom-control-input send ginger"--}}
+                                                   {{--id="ginger2"--}}
+                                                   {{--name="ginger" {{ $cart->ginger == true ? 'checked': '' }}>--}}
+                                            {{--<label class="custom-control-label" for="ginger2">Jengibre</label>--}}
+                                        {{--</div>--}}
+                                    {{--</th>--}}
+                                    {{--<th style="width: 25%">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-md-6">--}}
+                                                {{--<div class="custom-control custom-checkbox mb-2">--}}
+                                                    {{--<input type="checkbox" class="custom-control-input send sticks"--}}
+                                                           {{--id="sticks2"--}}
+                                                           {{--name="sticks" {{ $cart->sticks == true ? 'checked': '' }}>--}}
+                                                    {{--<label class="custom-control-label" for="sticks2">Palitos</label>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-md-6">--}}
+                                                {{--<div class="number-input" id="palitosCounter">--}}
+                                                    {{--<div class="number-input">--}}
+                                                        {{--<button type="button"--}}
+                                                                {{--onclick="oneLessCart(this.parentNode.querySelector('input[type=number]'))">--}}
+                                                            {{-----}}
+                                                        {{--</button>--}}
+                                                        {{--<input class="quantity sticks_quantity" min="1" name="sticks_quantity"--}}
+                                                               {{--value="{{ $cart->sticks_quantity }}" type="number">--}}
+                                                        {{--<button type="button"--}}
+                                                                {{--onclick="oneMoreCart(this.parentNode.querySelector('input[type=number]'))"--}}
+                                                                {{--class="plus">+--}}
+                                                        {{--</button>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</th>--}}
+                                    <th colspan="3" style="background:white;"></th>
+
+                                    <th colsp="4" style="width: 25%; padding: 0px;" class="bold font-20">
                                         <div style="background: #bc2d27; color: white;  border-radius: 3px; padding: 13px;">
                                             $<span class="right totals">{{  number_format($cart->totals, 0, ',', '.')  }}</span>
                                         </div>

@@ -20,6 +20,11 @@ Route::get('/logout', 'Frontend\AuthController@logout')->name('logout');
 
 Route::get('carrito', 'Frontend\CartController@index')->name('cart');
 
+//Route::get('tienda/', function(){
+//    return redirect()->route('init');
+//});
+
+Route::get('/tienda/{shop}', 'Frontend\IndexController@getShop')->name('shop');
 
 Route::group(['prefix' => 'perfil'], function () {
     Route::get('pedidos', 'Frontend\CustomerController@orders')->name('profile.orders');

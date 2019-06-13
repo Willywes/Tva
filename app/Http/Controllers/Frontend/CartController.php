@@ -81,13 +81,13 @@ class CartController extends Controller
 
             $cart = Cart::getCart();
             $cart->update($request->all());
-
-            if ($request->sticks == false and !$request->has('sticks_quantity')) {
-                // return $request->sticks;
-                if (!$cart->sticks) {
-                    $cart->update(['sticks_quantity' => 1]);
-                }
-            }
+//
+//            if ($request->sticks == false and !$request->has('sticks_quantity')) {
+//                // return $request->sticks;
+//                if (!$cart->sticks) {
+//                    $cart->update(['sticks_quantity' => 1]);
+//                }
+//            }
 
             if ($request->items) {
                 foreach ($request->items as $key => $value) {
@@ -132,11 +132,11 @@ class CartController extends Controller
             $cart = Cart::getCart();
             $cart->deleteItems();
 
-
-            $cart->wasabi = $order->wasabi;
-            $cart->ginger = $order->ginger;
-            $cart->sticks = $order->sticks;
-            $cart->sticks_quantity = $order->sticks_quantity;
+//
+//            $cart->wasabi = $order->wasabi;
+//            $cart->ginger = $order->ginger;
+//            $cart->sticks = $order->sticks;
+//            $cart->sticks_quantity = $order->sticks_quantity;
             //$cart->dispacth_amount = $order->dispacth_amount;
             $cart->save();
 
@@ -234,10 +234,10 @@ class CartController extends Controller
 
         $order = new Order();
         $order->customer_id = $cart->customer_id;
-        $order->wasabi = $cart->wasabi;
-        $order->ginger = $cart->ginger;
-        $order->sticks = $cart->sticks;
-        $order->sticks_quantity = $cart->sticks_quantity;
+//        $order->wasabi = $cart->wasabi;
+//        $order->ginger = $cart->ginger;
+//        $order->sticks = $cart->sticks;
+//        $order->sticks_quantity = $cart->sticks_quantity;
         $order->comments = $cart->comments;
         $order->order_status_id = 1000;
         $order->order_type_id = $id; // local o domicilio

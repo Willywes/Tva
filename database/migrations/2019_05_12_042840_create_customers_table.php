@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('rut')->nullable();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
@@ -26,6 +27,7 @@ class CreateCustomersTable extends Migration
         $c = new \App\Models\Customer();
         $c->firstname = 'Alejandro';
         $c->lastname = 'Isla';
+        $c->phone = '+56990684339';
         $c->email = 'aisla@innovaweb.cl';
         $c->password = bcrypt('admin123');
         $c->save();

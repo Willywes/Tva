@@ -11,18 +11,29 @@ use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
+use http\Env\Request;
 
 class IndexController extends Controller
 {
 
     public function index()
     {
-//        $destacados = Product::with('product_category')
-//            ->where('active',  1)
-//            ->where('offer', 1)
-//            ->orWhere('offer_price','>', 0)
-//            ->orderBy('position')
-//            ->get();
+
+        $shops = Shop::all();
+        return view('frontend.inicio.index', compact('shops'));
+    }
+
+    public function getShop($shop){
+        
+        $shop = Shop::where('slug', $shop)->first();
+
+        if(!$shop){
+            $title = 'Oops';
+            $message = 'Tienda no encontrada.';
+
+            return response()->view('frontend.globals.refuted', compact('title', 'message'));
+        }
 
         $products_categories = ProductCategory::with('products')
             ->orderBy('position')
@@ -33,7 +44,7 @@ class IndexController extends Controller
             })
             ->get();
 
-        return view('frontend.inicio.index', compact('products_categories'));
+        return view('frontend.inicio.index-shop', compact('products_categories'));
     }
 
     public function pro(){

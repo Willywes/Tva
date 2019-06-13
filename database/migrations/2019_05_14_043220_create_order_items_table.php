@@ -16,11 +16,14 @@ class CreateOrderItemsTable extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned()->nullable();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->bigInteger('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
             $table->integer('quantity');
             $table->integer('price');
+            $table->string('product_attributes')->nullable();
+            $table->integer('extra_price')->nullable();
+            $table->text('extra_description')->nullable();
             $table->integer('subtotal');
             $table->timestamps();
         });
