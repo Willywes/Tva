@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'pedidohsushi@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Pedidos HSushi'),
+        'address' => env('MAIL_FROM_ADDRESS', 'tiendavirtualagricola@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'TVA'),
     ],
 
     /*
