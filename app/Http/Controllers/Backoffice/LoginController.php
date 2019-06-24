@@ -21,9 +21,8 @@ class LoginController extends Controller
             'password' => 'required|string'
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::find(auth()->user()->id);
-            $user->last_access = new \DateTime();
             $user->save();
             return redirect()->route('backoffice');
         }

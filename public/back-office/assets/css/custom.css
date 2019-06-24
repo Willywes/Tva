@@ -249,3 +249,123 @@ body{
     width: 100%;
     max-width: 120px;
 }
+
+
+/* botones bootstrap */
+.btn-primary {
+    background: #168cda !important;
+    border: 0 !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-success {
+    background: #43a047 !important;
+    border: 0 !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-danger {
+    background: #f44336 !important;
+    border: 0 !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-warning {
+    background: #ffa726 !important;
+    border: 0 !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-info {
+    background: #00acc1 !important;
+    border: 0 !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover,
+.btn-warning:hover,
+.btn-info:hover {
+    border: 0 !important;
+    box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+!important
+}
+
+.btn-primary:hover {
+    background-color: #037fc1 !important;
+}
+
+.btn-success:hover {
+    background-color: #009048 !important;
+}
+
+.btn-danger:hover {
+    background-color: #e53935 !important;
+}
+
+.btn-warning:hover {
+    background-color: #fb8c00 !important;
+}
+
+.btn-info:hover {
+    background-color: #00acc1 !important;;
+}
+
+/* modal */
+.modal-content {
+    border-radius: .3125em !important;
+    padding: 10px;
+}
+
+.brainy-bg-style {
+    /* background: #008bff;
+     background: -moz-linear-gradient(top, #008bff 0%, #56daff 100%);
+     background: -webkit-linear-gradient(top, #008bff 0%, #56daff 100%);
+     background: linear-gradient(to bottom, #008bff 0%, #56daff 100%);
+     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008bff', endColorstr='#56daff', GradientType=0);*/
+    background: rgb(40, 44, 52);
+}
+
+.login-boxer{
+    /*margin: auto !important;*/
+    margin: 100px auto;
+}
+
+.login-boxer img{
+    width: 100%;
+    max-width: 200px;
+}
+
+.login-boxer-p {
+    color: #fff; font-size: 21px;"
+}
+
+.login-box {
+
+    box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.15);
+}
+
+.login-box-title {
+    background: #dd4b39;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.login-box-title h3{
+    margin: 0;
+    color: white;
+}
+
+.node-box-list{
+    display: block;
+    background: #fff;
+    padding:10px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}

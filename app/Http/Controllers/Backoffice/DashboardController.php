@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -31,17 +32,27 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $total_order_count  = Order::sum('total');
-        $total_product_sales = OrderItem::sum('quantity');
-        $customers_count = Customer::count();
-        $orders_count = Order::count();
-        return view('backoffice.dashboard.index', compact([
-            'total_order_count',
-            'total_product_sales',
-            'customers_count',
-            'orders_count'
 
-        ]));
+
+        if(Auth::user()){
+
+            $total_order_count  = Order::sum('total');
+            $total_product_sales = OrderItem::sum('quantity');
+            $customers_count = Customer::count();
+            $orders_count = Order::count();
+
+            return view('backoffice.dashboard.index', compact([
+                'total_order_count',
+                'total_product_sales',
+                'customers_count',
+                'orders_count'
+
+            ]));
+        }else{
+            return view('backoffice.auth.login');
+        }
+
+
     }
 
     /**
