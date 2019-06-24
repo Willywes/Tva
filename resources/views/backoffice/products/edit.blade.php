@@ -27,7 +27,7 @@
                 </div>
                 <div class="box-body">
 
-                    <form action="{{ route($route . 'update', ['brand' => encrypt($product_category->id)]) }}"
+                    <form action="{{ route($route . 'update', ['brand' => encrypt($product->id)]) }}"
                           method="POST">
 
                         {{ csrf_field() }}
@@ -43,6 +43,7 @@
                         <div class="row">
                             {{--<div class="col-md-3">--}}
                             {{--</div>--}}
+
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -52,24 +53,62 @@
                                                    class="form-control"
                                                    id="name"
                                                    name="name"
-                                                   placeholder="Ingrese el nombre de la categoría"
-                                                   value="{{ old('name') ?? $product_category->name }}">
+                                                   placeholder="Ingrese el nombre del producto"
+                                                   value="{{ old('name') ?? $product->name }}">
                                             {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group {{ $errors->has('parent') ? 'has-error':'' }}">
-                                            @php $parent_selected =  old('parent') ?? $product_category->parent; @endphp
-                                            <label for="parent">Categoría Padre {{$parent_selected}}</label>
+                                        <div class="form-group {{ $errors->has('slug') ? 'has-error':'' }}">
+                                            <label for="slug">Slug (*)</label>
+                                            <input required type="text"
+                                                   class="form-control"
+                                                   id="slug"
+                                                   name="slug"
+                                                   placeholder="Ingrese el nombre del producto"
+                                                   value="{{ old('name') ?? $product->slug }}">
+                                            {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group {{ $errors->has('price') ? 'has-error':'' }}">
+                                            <label for="price">Precio de Producto</label>
+                                            <input required type="numeric"
+                                                   class="form-control"
+                                                   id="price"
+                                                   name="price"
+                                                   placeholder="Ingrese el precio del producto"
+                                                   value="{{ old('price') ?? $product->price }}">
+                                            {!! $errors->first('price', '<span class="help-block">:message</span>') !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group {{ $errors->has('offer_price') ? 'has-error':'' }}">
+                                            <label for="offer_price">Precio Oferta</label>
+                                            <input type="numeric"
+                                                   class="form-control"
+                                                   id="offer_price"
+                                                   name="offer_price"
+                                                   placeholder="Ingrese el precio oferta del producto"
+                                                   value="{{ old('offer_price') ?? $product->offer_price }}">
+                                            {!! $errors->first('offer_price', '<span class="help-block">:message</span>') !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group {{ $errors->has('product_category_id') ? 'has-error':'' }}">
+                                            <label for="product_category_id">Categoría</label>
                                             <select class="form-control"
-                                                    name="parent"
-                                                    id="parent">
-                                                <option value="">Sin categoría padre</option>
-                                                @foreach( $product_categories as $pc)
-                                                    <option value="{{ $pc->id }}" {{ $parent_selected == $pc->id ? 'selected' : '' }}>{{ $pc->name }}</option>
+                                                    name="product_category_id"
+                                                    id="product_category_id">
+                                                <option value="">Sin categoría </option>
+                                                @foreach( $product_category as $pc)
+                                                    <option value="{{ $pc->id }}" {{ $product->product_category_id == $pc->id ? 'selected' : '' }}>{{ $pc->name }}</option>
                                                 @endforeach
                                             </select>
-                                            {!! $errors->first('parent', '<span class="help-block">:message</span>') !!}
+                                            {!! $errors->first('product_category_id', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +120,7 @@
                                                       placeholder="Ingrese una descripción de la marca"
                                                       name="description"
                                                       id="description"
-                                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('description') ?? $product_category->description }}</textarea>
+                                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! old('description') ?? $product->description !!} </textarea>
                                             {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
@@ -115,10 +154,20 @@
 
 @section('styles')
 
+    <link rel="stylesheet" href="/back-office/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 @endsection
 
 @section('scripts')
 
+    <script src="/back-office/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.textarea').wysihtml5()
+        });
 
+        $('#name').keyup(function () {
+            $('#slug').val(string_to_slug($('#name').val()))
+        });
+    </script>
 @endsection

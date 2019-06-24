@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -80,7 +82,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find(decrypt($id));
+        //return response()->json($product);
+        if(!$product){
+            session()->flash('warning', 'Categoría de producto no encontrado.');
+            return back();
+        }
+        $product_category = ProductCategory::all();
+        //return response()->json($product_category);
+        return view($this->view_folder . 'edit', compact('product', 'product_category'));
     }
 
     /**
@@ -92,7 +102,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return response()->json($request);
+        $product = Product::find(decrypt($id));
+
+        if(!$product){
+            session()->flash('warning', 'Producto no encontrado.');
+            return back();
+        }
+
+        if(!$product->editable){
+            session()->flash('warning', 'Producto no se puede editar.');
+            return redirect()->route($this->route . 'index');
+        }
+
+        $rules = [
+            'name' => 'required',
+            'slug' => 'required',
+            'price' => 'required|numeric',
+            'product_category_id' => 'required',
+            'offer_price' => 'nullable|numeric|min:1'
+        ];
+
+        $message = [
+            'name.required' => 'Nombre del producto es requerido',
+            'slug.required' => 'Slug del producto es requerido',
+            'price.required' => 'El precio del producto es requerido',
+            'price.numeric' => 'El precio del producto debe ser un valor númerico',
+            'product_category_id.required' => 'Categoría de producto es requerida',
+            'offer_price.numeric' => 'El precio oferta del producto debe ser un valor númerico',
+            'offer_price.min' => 'El precio oferta del producto debe ser un mayor a 0'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
+
+        if ($validator->passes()) {
+            $product->update($request->all());
+
+            if ($product) {
+                session()->flash('success', 'Producto actualizado correctamente.');
+                return redirect()->route($this->route . 'index');
+            }
+            return redirect()->back()->withErrors(['mensaje' => 'Error inesperado al editar producto.'])->withInput();
+        } else {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
     }
 
     /**
