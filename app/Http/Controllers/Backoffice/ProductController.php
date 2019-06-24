@@ -37,7 +37,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::with('product_category')->orderBy('product_category_id')->orderBy('name')->get();
+        $products = Product::shop()->with('product_category')->orderBy('product_category_id')->orderBy('name')->get();
         return view($this->view_folder . 'index', compact('products'));
 
     }

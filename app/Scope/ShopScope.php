@@ -11,11 +11,11 @@ class ShopScope implements Scope
 {
     public function apply(Builder $builder, Model $model)
     {
-        if (auth()->check()) {
-            if (!auth()->guard('customer')->check()) {
-                $builder->where('shop_id', auth()->user()->shop_id);
-            }
-        }
+//        if (auth()->check()) {
+//            if (!auth()->guard('customer')->check()) {
+//                $builder->where('shop_id', auth()->user()->shop_id);
+//            }
+//        }
 
 
     }

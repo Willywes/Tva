@@ -55,4 +55,9 @@ class ProductCategory extends Model
 
         static::addGlobalScope(new ShopScope());
     }
+
+    public function scopeShop()
+    {
+        return $this->where('shop_id', auth()->user()->shop_id);
+    }
 }

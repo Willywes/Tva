@@ -37,7 +37,7 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $product_categories = ProductCategory::positions()->withCount('products')->get();
+        $product_categories = ProductCategory::shop()->positions()->withCount('products')->get();
         return view($this->view_folder . 'index', compact('product_categories'));
     }
 
