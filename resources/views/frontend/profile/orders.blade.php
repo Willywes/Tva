@@ -23,7 +23,7 @@
                                         <thead>
                                         <tr>
                                             <th>FECHA</th>
-                                            <th>ADIC.</th>
+                                            <!--th>ADIC.</th-->
                                             <th>PRODUCTOS</th>
                                             <th>TOTAL</th>
                                             <th>Tipo</th>
@@ -37,7 +37,7 @@
                                                     {{ date('d-m-Y', strtotime($order->created_at)) }}<br>
                                                     {{ date('H:i:s', strtotime($order->created_at)) }}
                                                 </td>
-                                                <td style="white-space: nowrap; width: 1%; vertical-align: middle; ">
+                                                <!--td style="white-space: nowrap; width: 1%; vertical-align: middle; ">
                                                     <div>
                                                         <div>
                                                             @if($order->wasabi)
@@ -64,7 +64,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td-->
                                                 <td style="white-space: nowrap; ">
                                                     <div class="row">
                                                         @foreach($order->items as $item)
