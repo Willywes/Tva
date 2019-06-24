@@ -36,10 +36,10 @@
                                 <a class="dropdown-item" href="{{ route('profile.change-password') }}">
                                     <i class="fas fa-key"></i> Cambiar contraseña
                                 </a>
-                                <a class="dropdown-item" href="{{ route('profile.addresses') }}">
+                                <!--a class="dropdown-item" href="{{ route('profile.addresses') }}">
                                     <i class="fas fa-address-book"></i>
                                     Mis direcciones
-                                </a>
+                                </a-->
                                 <a class="dropdown-item" href="{{ route('profile.orders') }}">
                                     <i class="fas fa-list-ul"></i>
                                     Mis pedidos
