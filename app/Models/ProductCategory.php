@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scope\ShopScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -48,4 +49,10 @@ class ProductCategory extends Model
         return $this->hasMany(Product::class);
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ShopScope());
+    }
 }

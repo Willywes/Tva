@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scope\ShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -69,4 +70,10 @@ class Product extends Model
             },'attributes.product_attribute'])->find($cat);
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ShopScope());
+    }
 }
